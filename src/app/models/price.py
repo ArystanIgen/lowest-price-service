@@ -17,19 +17,24 @@ class PriceModel(BaseModel):
     __tablename__ = "prices"
 
     article_number: Mapped[str] = mapped_column(
-        String(64), nullable=False, index=True
+        String(64),
+        nullable=False,
+        index=True,
     )
-    start_date: Mapped[datetime.date] = mapped_column(
-        Date, nullable=False
+    start_date: Mapped[datetime.date | None] = mapped_column(
+        Date,
+        nullable=True,
     )
-    end_date: Mapped[datetime.date] = mapped_column(
-        Date, nullable=False
+    end_date: Mapped[datetime.date | None] = mapped_column(
+        Date,
+        nullable=True,
     )
     price: Mapped[Decimal] = mapped_column(
-        Numeric(10, 2), nullable=False
+        Numeric(10, 2),
+        nullable=False,
     )
 
     price_type: Mapped[PriceType] = mapped_column(
         SAEnum(PriceType),
-        nullable=False
+        nullable=False,
     )

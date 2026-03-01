@@ -55,10 +55,9 @@ env = [
     "API_HOST=http://test",
     "API_TITLE=Test Service",
     "API_VERSION=0.1.0",
-    "API_PREFIX=",
+    "API_PREFIX=/api",
     "API_DEBUG=True",
     "API_ALLOWED_HOSTS=*",
-    "PYPI_URL=http://test-pypi-url",
 ]
 
 

@@ -42,6 +42,11 @@ setup:
 dev:
     uv run --env-file .env uvicorn app.main:main_app --reload --no-access-log --app-dir src
 
+
+# Migrate data from csv file
+csv-migrate:
+    docker-compose run --rm -e ENV=MIGRATE_CSV fastapi
+
 # Linting Commands
 # ---------------
 

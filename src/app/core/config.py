@@ -43,5 +43,8 @@ class AppConfig:
     api: API = environ.group(API)
     db: DB = environ.group(DB)
 
+    regular_prices_csv_file_path = "sample-data/verkoopprijzen.csv"
+    promo_prices_csv_file_path = "sample-data/promoties.csv"
+
 
 CONFIG: AppConfig = AppConfig.from_environ()  # type: ignore
