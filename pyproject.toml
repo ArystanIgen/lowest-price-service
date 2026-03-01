@@ -1,0 +1,135 @@
+[project]
+name = "lowest-price-service"
+version = "0.1.0"
+description = "A FastAPI microservice that computes and exposes the lowest effective article price in the last 30 days based on regular and promotional price history."
+requires-python = ">=3.14"
+dependencies = [
+    "alembic>=1.18.4",
+    "asyncpg>=0.31.0",
+    "environ-config>=24.1.0",
+    "fastapi>=0.135.1",
+    "loguru>=0.7.3",
+    "psycopg2-binary>=2.9.11",
+    "sqlalchemy>=2.0.47",
+    "sqlalchemy-utils>=0.42.1",
+    "uvicorn>=0.41.0",
+]
+
+[dependency-groups]
+dev = [
+    "bandit>=1.8.3",
+    "ipython>=9.7.0",
+    "pytest>=9.0.0",
+    "pytest-asyncio>=1.3.0",
+    "pytest-cov>=7.0.0",
+    "pytest-env>=1.2.0",
+    "pytest-sugar>=1.0.0",
+    "pytest-xdist>=3.6.1",
+    "ruff>=0.14.6",
+    "safety>=3.4.0",
+    "ty>=0.0.14",
+]
+
+[tool.ty.environment]
+python-version = "3.14"
+
+[tool.pytest]
+minversion = "9.0"
+python_files = ["test*.py", "*_tests.py"]
+testpaths = ["app"]
+addopts = [
+    "-v",
+    "--cov=app",
+    "--cov-fail-under=95",
+    "--cov-report=term-missing",
+    "--color=yes",
+    "--strict-markers",
+    "--tb=short",
+]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+env = [
+    "ENV=TEST",
+    "API_HOST=http://test",
+    "API_TITLE=Test Service",
+    "API_VERSION=0.1.0",
+    "API_PREFIX=",
+    "API_DEBUG=True",
+    "API_ALLOWED_HOSTS=*",
+    "PYPI_URL=http://test-pypi-url",
+]
+
+
+[tool.bandit]
+exclude = ["test_*.py"]
+
+
+
+[tool.ruff]
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "migrations",
+    "config",
+    "versions",
+    "alembic",
+]
+
+line-length = 79
+indent-width = 4
+
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "F",
+    "C901", # mccabe
+    "I001", # import sorting
+    "E5", # line & backslash checks
+    "W2", # blank line checks
+    "B", # flake8-bugbear
+]
+
+
+fixable = ["ALL"]
+unfixable = []
+
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+
+[tool.ruff.format]
+quote-style = "double"
+
+indent-style = "space"
+
+skip-magic-trailing-comma = false
+
+line-ending = "auto"
