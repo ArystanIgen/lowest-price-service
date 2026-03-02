@@ -1,4 +1,4 @@
-# justfile for package-event-service project
+# justfile for lowest-price-service project
 # Run with: just <command>
 
 # List all available commands
@@ -38,9 +38,10 @@ restart service:
 setup:
     uv sync
 
-# Run the application locally
-dev:
-    uv run --env-file .env uvicorn app.main:main_app --reload --no-access-log --app-dir src
+
+# Migrate data from csv file
+csv-migrate:
+    docker-compose run --rm -e ENV=MIGRATE_CSV fastapi
 
 # Linting Commands
 # ---------------
@@ -72,4 +73,4 @@ lint: ruff-check ty bandit safety
 
 # Run pytest tests inside Docker
 test:
-    uv run pytest .
+    docker-compose run --rm -e ENV=TEST fastapi

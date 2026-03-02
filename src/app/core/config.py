@@ -10,7 +10,6 @@ class AppConfig:
         version = environ.var()
         prefix = environ.var()
         debug = environ.bool_var()
-        allowed_hosts = environ.var()
 
     @environ.config(prefix="DB")
     class DB:
@@ -25,13 +24,6 @@ class AppConfig:
         future = environ.bool_var(default=True)
 
         @property
-        def url(self):
-            return (
-                f"postgresql://{self.username}:{self.password}"
-                f"@{self.host}:{self.port}/{self.name}"
-            )
-
-        @property
         def async_url(self):
             return (
                 f"postgresql+asyncpg://{self.username}:{self.password}"
@@ -42,6 +34,9 @@ class AppConfig:
 
     api: API = environ.group(API)
     db: DB = environ.group(DB)
+
+    regular_prices_csv_file_path = "sample-data/verkoopprijzen.csv"
+    promo_prices_csv_file_path = "sample-data/promoties.csv"
 
 
 CONFIG: AppConfig = AppConfig.from_environ()  # type: ignore

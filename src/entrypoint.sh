@@ -32,7 +32,7 @@ case "$ENV" in
     wait_for_db
     pytest .
     ;;
-"MIGRATE")
+"MIGRATE_CSV")
     wait_for_db
     alembic_migration
     python3 -m app.services.data_ingestion
