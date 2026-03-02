@@ -23,7 +23,7 @@ wait_for_db() {
 
 case "$ENV" in
 "LINT")
-    echo '===RUN MYPY===' && mypy .
+    echo '===RUN TY===' && ty .
     echo '===RUN RUFF===' && ruff check --no-cache .
     echo '===RUN BANDIT===' && bandit .
     echo '===RUN SAFETY CHECK===' && safety check --full-report --ignore 42194

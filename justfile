@@ -65,7 +65,7 @@ bandit:
 
 # Run safety check
 safety:
-    uv run safety check --full-report
+    uv run safety check --full-report --ignore 42194
 
 # Run all linting checks
 lint: ruff-check ty bandit safety
