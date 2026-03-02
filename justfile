@@ -77,4 +77,4 @@ lint: ruff-check ty bandit safety
 
 # Run pytest tests inside Docker
 test:
-    uv run pytest .
+    docker-compose run --rm -e ENV=TEST fastapi

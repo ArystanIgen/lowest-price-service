@@ -18,7 +18,7 @@ class PriceRepository(
         self,
         async_session: AsyncSession,
         article_number: str,
-        days: int = 30,
+        days: int,
     ) -> dict[str, Any] | None:
         target_date = date.today()
         start_period = target_date - timedelta(days=days)
@@ -32,7 +32,7 @@ class PriceRepository(
                 and_(
                     self.model.article_number == article_number,
                     self.model.start_date <= target_date,
-                    (self.model.end_date == None) | (self.model.end_date >= start_period),
+                    (self.model.end_date.is_(None)) | (self.model.end_date >= start_period),
                 )
             )
             .group_by(self.model.article_number)
@@ -51,7 +51,7 @@ class PriceRepository(
     async def get_lowest_prices_for_all_articles(
         self,
         async_session: AsyncSession,
-        days: int = 30,
+        days: int,
     ) -> list[dict[str, Any]]:
         target_date = date.today()
         start_period = target_date - timedelta(days=days)

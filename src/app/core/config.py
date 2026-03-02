@@ -25,13 +25,6 @@ class AppConfig:
         future = environ.bool_var(default=True)
 
         @property
-        def url(self):
-            return (
-                f"postgresql://{self.username}:{self.password}"
-                f"@{self.host}:{self.port}/{self.name}"
-            )
-
-        @property
         def async_url(self):
             return (
                 f"postgresql+asyncpg://{self.username}:{self.password}"

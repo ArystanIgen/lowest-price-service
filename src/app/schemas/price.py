@@ -15,11 +15,11 @@ class PriceCreate(BaseModel):
 
 
 class PriceUpdate(BaseModel):
-    article_number: str | None = Field(..., description="Article number")
-    start_date: date | None = Field(..., description="Start date of the price")
-    end_date: date | None = Field(..., description="End date of the price")
-    price: Decimal | None = Field(..., description="Price")
-    price_type: PriceType | None = Field(..., description="Price type")
+    article_number: str | None = Field(None, description="Article number")
+    start_date: date | None = Field(None, description="Start date of the price")
+    end_date: date | None = Field(None, description="End date of the price")
+    price: Decimal | None = Field(None, description="Price")
+    price_type: PriceType | None = Field(None, description="Price type")
 
 
 class LowestPriceOut(BaseModel):

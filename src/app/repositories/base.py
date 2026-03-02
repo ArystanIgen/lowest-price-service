@@ -92,9 +92,7 @@ class BaseRepository(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
         instance: ModelType,
         obj_update: UpdateSchemaType,
     ) -> ModelType | None:
-        update_data = obj_update.model_dump(
-            mode="python", exclude_unset=True, exclude_none=True
-        )
+        update_data = obj_update.model_dump(mode="python", exclude_unset=True)
         for key, value in update_data.items():
             setattr(instance, key, value)
         await async_session.commit()
