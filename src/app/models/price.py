@@ -1,8 +1,9 @@
 import datetime
-
-from enum import StrEnum
 from decimal import Decimal
-from sqlalchemy import Date, String, Numeric, Enum as SAEnum
+from enum import StrEnum
+
+from sqlalchemy import Date, Numeric, String
+from sqlalchemy import Enum as SAEnum
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.models.base import BaseModel

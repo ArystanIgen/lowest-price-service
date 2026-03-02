@@ -1,4 +1,4 @@
-# justfile for package-event-service project
+# justfile for lowest-price-service project
 # Run with: just <command>
 
 # List all available commands
@@ -37,10 +37,6 @@ restart service:
 # Install dependencies
 setup:
     uv sync
-
-# Run the application locally
-dev:
-    uv run --env-file .env uvicorn app.main:main_app --reload --no-access-log --app-dir src
 
 
 # Migrate data from csv file

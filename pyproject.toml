@@ -32,6 +32,11 @@ dev = [
     "ty>=0.0.14",
 ]
 
+[tool.ty.src]
+exclude = [
+    "**/venv/**",
+    "**/alembic/**",
+]
 [tool.ty.environment]
 python-version = "3.14"
 

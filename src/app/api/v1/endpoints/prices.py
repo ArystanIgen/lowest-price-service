@@ -12,7 +12,8 @@ router = APIRouter()
     status_code=status.HTTP_200_OK,
     response_model=list[LowestPriceOut],
     summary="Get the lowest prices for all articles",
-    description="Returns the lowest prices for all articles in the last 30 days, "
+    description="Returns the lowest prices for all articles "
+                "in the last 30 days, "
                 "considering both regular and promotional prices",
     operation_id="getLowestPrices",
     response_description="Lowest prices for all articles",
@@ -34,7 +35,8 @@ async def get_lowest_prices_api(
     status_code=status.HTTP_200_OK,
     response_model=LowestPriceOut,
     summary="Get the lowest price for a specific article",
-    description="Returns the lowest price for a specific article in the last 30 days, "
+    description="Returns the lowest price for a specific article "
+                "in the last 30 days, "
                 "considering both regular and promotional prices",
     operation_id="getLowestPrice",
     response_description="Lowest price for a specific article",
@@ -53,7 +55,8 @@ async def get_article_lowest_price_api(
     if not fetched_price:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"No price data found for article {article_number} in the last 30 days",
+            detail=f"No price data found for article {article_number} "
+                   f"in the last 30 days",
         )
 
     return LowestPriceOut(**fetched_price)

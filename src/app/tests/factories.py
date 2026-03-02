@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 from decimal import Decimal
-from typing import Any
+from typing import Any, cast
 
 import factory
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -21,7 +21,7 @@ async def create_price_factory(
     async_session: AsyncSession,
     **kwargs: Any,
 ) -> PriceModel:
-    payload = PriceFactory(**kwargs)
+    payload = cast(dict[str, Any], PriceFactory(**kwargs))
     price = PriceModel(**payload)
     async_session.add(price)
     await async_session.commit()

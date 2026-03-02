@@ -1,12 +1,12 @@
 from datetime import date, timedelta
-
 from typing import Any
+
 from sqlalchemy import and_, func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import PriceModel
 from app.repositories.base import BaseRepository
-from app.schemas.price import PriceUpdate, PriceCreate
+from app.schemas.price import PriceCreate, PriceUpdate
 
 
 class PriceRepository(
@@ -32,7 +32,8 @@ class PriceRepository(
                 and_(
                     self.model.article_number == article_number,
                     self.model.start_date <= target_date,
-                    (self.model.end_date.is_(None)) | (self.model.end_date >= start_period),
+                    (self.model.end_date.is_(None))
+                    | (self.model.end_date >= start_period),
                 )
             )
             .group_by(self.model.article_number)
@@ -64,7 +65,8 @@ class PriceRepository(
             .where(
                 and_(
                     self.model.start_date <= target_date,
-                    (self.model.end_date == None) | (self.model.end_date >= start_period),
+                    (self.model.end_date.is_(None))
+                    | (self.model.end_date >= start_period),
                 )
             )
             .group_by(self.model.article_number)
