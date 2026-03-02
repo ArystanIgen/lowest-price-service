@@ -10,7 +10,6 @@ class AppConfig:
         version = environ.var()
         prefix = environ.var()
         debug = environ.bool_var()
-        allowed_hosts = environ.var()
 
     @environ.config(prefix="DB")
     class DB:
