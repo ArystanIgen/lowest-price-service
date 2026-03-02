@@ -46,7 +46,6 @@ case "$ENV" in
         --port "${UVICORN_PORT:-8000}" \
         --no-access-log
     ;;
-
 "PRODUCTION")
     wait_for_db
     alembic_migration

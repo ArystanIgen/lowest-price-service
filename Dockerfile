@@ -17,8 +17,7 @@ RUN --mount=type=cache,target=/root/.cache/uv \
 COPY ./src /src
 
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --frozen $(if [ "$ENVIRONMENT" = 'production' ]; then echo '--no-dev'; fi) \
-    && if [ "$ENVIRONMENT" = 'production' ]; then rm -rf /root/.cache/uv; fi
+    uv sync --frozen $(if [ "$ENVIRONMENT" = 'production' ]; then echo '--no-dev'; fi)
 
 COPY ./src/entrypoint.sh /src/entrypoint.sh
 
